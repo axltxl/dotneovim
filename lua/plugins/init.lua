@@ -37,6 +37,9 @@ vim.opt.rtp:prepend(lazypath)
    -- Which-key (spacemacs-inspired)
    {'folke/which-key.nvim'},
 
+     -- project management
+    {"ahmedkhalf/project.nvim", dependencies = { 'nvim-telescope/telescope.nvim' }},
+
    -- editing
    -----------
    -- surrounding
