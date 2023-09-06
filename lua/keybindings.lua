@@ -48,7 +48,7 @@ map_leader_n('wh', ':wincmd h<cr>') -- left
 map_leader_n('fn', ':new<cr>')           -- new buffer on window
 map_leader_n('fs', ':w<cr>')             -- save current buffer
 map_leader_n('ft',   ':NvimTreeToggle<cr>')  -- toggle nvim-tree
-map_leader_n('<tab>', ':NvimTreeToggle<cr>') -- toggle nvim-tree
+map_leader_n('<tab>', ':NvimTreeFocus<cr>') -- toggle nvim-tree
 map_n       ('<C-b>', ':NvimTreeToggle<cr>') -- toggle nvim-tree
 
 -- telescope
