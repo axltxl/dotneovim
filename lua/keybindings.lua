@@ -21,6 +21,12 @@ function map_leader_n(mnemonic, command, opts)
 end
 
 -- ***********************
+-- editor general management
+-- ***********************
+map_leader_n('vx', ':wqall!<cr>')      -- quit neovim (autosave every buffer)
+
+
+-- ***********************
 -- window/tab management
 -- ***********************
 

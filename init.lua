@@ -13,5 +13,3 @@ require("colorscheme")
 
 -- key bindings always go last
 require("keybindings")
-
-

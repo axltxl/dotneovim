@@ -49,6 +49,12 @@ vim.opt.rtp:prepend(lazypath)
       event = "VeryLazy",
     },
 
+    -- auto-closing pairs
+   {"windwp/nvim-autopairs"},
+
+   -- auto trimming files upon saving them
+    {"cappyzawa/trim.nvim"},
+
    -- LSP
    -----------
    -- base lsp package manager, there's an LSP
