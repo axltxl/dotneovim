@@ -2,14 +2,16 @@
 -- main nvim config
 --
 
+local core = require("core")
+
 -- essentials is always the first
-require("essentials")
+core.safe_require("essentials")
 
 -- install and configure plugins
-require("plugins")
+core.safe_require("plugins")
 
 -- load color scheme
-require("colorscheme")
+core.safe_require("colorscheme")
 
 -- key bindings always go last
-require("keybindings")
+core.safe_require("keybindings")

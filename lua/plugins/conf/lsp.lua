@@ -1,41 +1,37 @@
 --
 -- LSP configuration goes in here
 
-
-function on_attach(_, _)
-end
+local core = require("core")
 
 -- base lsp package manager
-local ok, mason = pcall(require, 'mason')
+-- local ok, mason = pcall(require, 'mason')
 
-if ok then
-  -- mason configuration
-  mason.setup()
+core.safe_require('mason', function(mason)
+    -- mason configuration
+    mason.setup()
 
-  -- this is where we tell mason what LSPs
-  -- do we want to be installed
-  local ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
-  if ok then
-    mason_lspconfig.setup({
-      -- lua
-      ensure_installed = { "lua_ls" }
-    })
-  end
-  --
-  -- .. and this one will configure every LSP
-  -- ***********************************************
-  local ok, lspconfig = pcall(require, 'lspconfig')
-  if ok then
-    -- lua
-    lspconfig.lua_ls.setup {}
-  end
-end
+    -- this is where we tell mason what LSPs
+    -- do we want to be installed
+    core.safe_require('mason-lspconfig', function(mason_lspconfig)
+        mason_lspconfig.setup({
+            -- lua
+            ensure_installed = { "lua_ls" }
+        })
+    end)
+
+    -- .. and this one will configure every LSP
+    -- ***********************************************
+    core.safe_require('lspconfig', function(lspconfig)
+        -- lua
+        lspconfig.lua_ls.setup {}
+    end)
+end)
 
 --
 -- automatically format file upon saving a file
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  callback = function()
-    vim.lsp.buf.format { async = false }
-  end,
+    pattern = { "*" },
+    callback = function()
+        vim.lsp.buf.format { async = false }
+    end,
 })

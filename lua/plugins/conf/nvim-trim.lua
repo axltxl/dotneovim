@@ -2,4 +2,7 @@
 -- plugin: trim.nvim
 --
 
-require("trim").setup({})
+local core = require('core')
+core.safe_require('trim', function(trim)
+    trim.setup {}
+end)

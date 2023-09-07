@@ -2,4 +2,7 @@
 -- nvim-surround
 --
 
-require("nvim-surround").setup({})
+local core = require("core")
+core.safe_require('nvim-surround', function(mod)
+    mod.setup {}
+end)

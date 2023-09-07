@@ -2,12 +2,13 @@
 -- auto-comment
 -- 'numToStr/Comment.nvim',
 --
-ok, comment = pcall(require, 'comment')
-if ok then
-  comment.setup({
-    mappings = {
-      basic = false,
-      extra = false,
-    },
-  })
-end
+local core = require("core")
+
+core.safe_require('Comment', function(comment)
+    comment.setup({
+        mappings = {
+            basic = false,
+            extra = false,
+        },
+    })
+end)

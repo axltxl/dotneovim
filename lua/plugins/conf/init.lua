@@ -1,7 +1,6 @@
 --
 -- plugin configuration
 --
-
 -- load all individual configurations
 require('plugins.conf.telescope')
 require('plugins.conf.lsp')
