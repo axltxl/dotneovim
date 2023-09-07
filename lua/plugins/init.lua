@@ -55,6 +55,9 @@ vim.opt.rtp:prepend(lazypath)
    -- auto trimming files upon saving them
     {"cappyzawa/trim.nvim"},
 
+    -- auto commenting
+    {'numToStr/Comment.nvim'},
+
    -- LSP
    -----------
    -- base lsp package manager, there's an LSP

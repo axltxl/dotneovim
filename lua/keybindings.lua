@@ -2,28 +2,56 @@
 -- key bindings section
 --
 
-local BINDINGOPTS = { noremap = true }
+local DEFAULT_BINDINGOPTS = { noremap = true }
 
 -- set leader key
 vim.g.mapleader = ' '
 
+
 -- a commodity function to map a key bind
+function map(mode, keys, command, opts)
+  if opts == nil then
+    opts = DEFAULT_BINDINGOPTS
+  end
+  vim.keymap.set(mode, keys, command, opts)
+end
+
 -- in normal mode
 function map_n(mnemonic, command, opts)
-  if opts == nil then
-    opts = BINDINGOPTS
-  end
-  vim.keymap.set('n', mnemonic, command, opts)
+  map('n', mnemonic, command, opts)
 end
 
 function map_leader_n(mnemonic, command, opts)
   map_n('<leader>' .. mnemonic, command, opts)
 end
 
+-- visual mode
+function map_v(mnemonic, command, opts)
+  map('v', mnemonic, command, opts)
+end
+
+function map_leader_v(mnemonic, command, opts)
+  map_v('<leader>' .. mnemonic, command, opts)
+end
+
+-- insert mode
+function map_i(mnemonic, command, opts)
+  map('i', mnemonic, command, opts)
+end
+
+
+-- ***********************
+-- Bad habits
+-- ***********************
+-- disable backspace
+-- FIXME: implement me
+map_n('<BS>', '<Nop>')
+map_v('<BS>', '<Nop>')
+
 -- ***********************
 -- editor general management
 -- ***********************
-map_leader_n('vx', ':wqall!<cr>')      -- quit neovim (autosave every buffer)
+map_leader_n(';q', ':wqall!<cr>')      -- quit neovim (autosave every buffer)
 
 
 -- ***********************
@@ -61,21 +89,33 @@ map_n       ('<C-b>', ':NvimTreeToggle<cr>') -- toggle nvim-tree
 -- ***********************
 -- telescope
 -- ***********************
-local builtin = require('telescope.builtin')
-local telescope = require('telescope')
-map_leader_n('ff',
-  function() builtin.find_files({
-      hidden = true,
-      no_ignore = true
-    })
-  end)
-map_leader_n('fg', builtin.live_grep)
-map_leader_n('fb', builtin.buffers)
-map_leader_n('fh', builtin.help_tags)
+local ok, builtin = pcall(require, 'telescope.builtin')
+if ok then
+  map_leader_n('ff',
+    function() builtin.find_files({
+        hidden = true,
+        no_ignore = true
+      })
+    end)
+  map_leader_n('fg', builtin.live_grep)
+  map_leader_n('fb', builtin.buffers)
+  map_leader_n('fh', builtin.help_tags)
+end
 
 -- project management
-map_leader_n('pp', telescope.extensions.projects.projects, {})
+local ok, telescope = pcall(require, 'telescope')
+if ok then
+  map_leader_n('pp', telescope.extensions.projects.projects)
+end
 
+-- ***********************
+-- text editing
+-- ***********************
+local ok, comment = pcall(require, 'Comment.api')
+ if ok then
+  map_leader_v(';', '<Plug>(comment_toggle_blockwise_visual)')
+  map_leader_n(';;', '<Plug>(comment_toggle_linewise_current)')
+ end
 
 -- ***********************
 -- plugin management(lazy.nvim)
