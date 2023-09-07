@@ -12,6 +12,8 @@ vim.g.mapleader = ' '
 function map(mode, keys, command, opts)
   if opts == nil then
     opts = DEFAULT_BINDINGOPTS
+  else
+    opts['noremap'] = true
   end
   vim.keymap.set(mode, keys, command, opts)
 end
@@ -59,9 +61,9 @@ map_leader_n(';q', ':wqall!<cr>')      -- quit neovim (autosave every buffer)
 -- ***********************
 
 -- creation and deletion
-map_leader_n('wv', ':vsplit<cr>')      -- split vertically
-map_leader_n('ws', ':split<cr>')       -- split horizontally
-map_leader_n('wd', ':q!<cr>')          -- remove split
+map_leader_n('wv', ':vsplit<cr>', {desc = "split vertically"})     -- split vertically
+map_leader_n('ws', ':split<cr>',  {desc= "split horizontally"})    -- split horizontally
+map_leader_n('wd', ':q!<cr>',     {desc = "close current window"}) -- remove split
 
 -- navigation
 map_leader_n('wk', ':wincmd k<cr>') -- up
@@ -131,7 +133,14 @@ map_n(']<space>', 'o<esc>')
 -- ***********************
 -- lsp
 -- ***********************
--- CONTINUE HERE tomorrow
---lsp_opts = { buffer en
---map_leader_n('[', vim.lsp.bug.definition,
--- global mappings
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+     -- Buffer local mappings.
+      -- See `:help vim.lsp.*` for documentation on any of the below functions
+      local opts = { buffer = ev.buf }
+      map_n('gh', vim.lsp.buf.hover, opts)
+    end
+})
