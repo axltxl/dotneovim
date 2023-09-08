@@ -112,14 +112,25 @@ end)
 core.safe_require('telescope', function(telescope)
     map_leader_n('pp', telescope.extensions.projects.projects)
 end)
+--
+-- ***********************
+-- git
+-- ***********************
+core.safe_require('neogit', function(neogit)
+    map_leader_n('gs', function() neogit.open() end)
+end)
 
 -- ***********************
 -- text editing
 -- ***********************
+-- toggle comments
 core.safe_require('Comment.api', function(comment)
     map_leader_v(';', '<Plug>(comment_toggle_blockwise_visual)')
     map_leader_n(';;', '<Plug>(comment_toggle_linewise_current)')
 end)
+
+-- format file (via lsp)
+map_leader_n(';f', function() vim.lsp.buf.format { async = false } end)
 
 -- ***********************
 -- plugin management(lazy.nvim)

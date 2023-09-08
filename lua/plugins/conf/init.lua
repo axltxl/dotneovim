@@ -12,6 +12,7 @@ require('plugins.conf.project')
 require('plugins.conf.nvim-autopairs')
 require('plugins.conf.nvim-trim')
 require('plugins.conf.comment')
+require('plugins.conf.git')
 --
 ---------------------------------------------
 -- Individual configuration for every LSP
