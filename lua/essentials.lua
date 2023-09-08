@@ -2,10 +2,8 @@
 -- basic editor settings
 --
 
-local tabsize            = 4
+local tabsize = 4
 
-vim.o.timeout            = true
-vim.o.timeoutlen         = 300
 
 -- disable netrw at the very start of your init.lua
 -- (this is required by nvim-tree, see: plugins.lua)

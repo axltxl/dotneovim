@@ -3,9 +3,20 @@
 
 local core = require("core")
 
--- base lsp package manager
--- local ok, mason = pcall(require, 'mason')
+-- set log level on lspconfig
+vim.lsp.set_log_level("debug")
 
+-- LSP server list
+-- -------------------
+local lsp_servers = {
+    -- lua
+    "lua_ls",
+
+    --python
+    "pylsp",
+}
+
+-- base lsp package manager
 core.safe_require('mason', function(mason)
     -- mason configuration
     mason.setup()
@@ -14,21 +25,14 @@ core.safe_require('mason', function(mason)
     -- do we want to be installed
     core.safe_require('mason-lspconfig', function(mason_lspconfig)
         mason_lspconfig.setup({
-            -- lua
-            ensure_installed = { "lua_ls" }
+            ensure_installed = lsp_servers
         })
-    end)
-
-    -- .. and this one will configure every LSP
-    -- ***********************************************
-    core.safe_require('lspconfig', function(lspconfig)
-        -- lua
-        lspconfig.lua_ls.setup {}
     end)
 end)
 
 --
 -- automatically format file upon saving a file
+--
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "*" },
     callback = function()

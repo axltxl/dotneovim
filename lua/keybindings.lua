@@ -82,11 +82,15 @@ map_leader_n('th', ':tabprevious<cr>') -- go to previous tab
 -- ***********************
 
 -- creation and deletion
-map_leader_n('fn', ':new<cr>')              -- new buffer on window
-map_leader_n('fs', ':w<cr>')                -- save current buffer
-map_leader_n('ft', ':NvimTreeToggle<cr>')   -- toggle nvim-tree
-map_leader_n('<tab>', ':NvimTreeFocus<cr>') -- toggle nvim-tree
-map_n('<C-b>', ':NvimTreeToggle<cr>')       -- toggle nvim-tree
+map_leader_n('fn', ':new<cr>') -- new buffer on window
+map_leader_n('fs', ':w<cr>')   -- save current buffer
+
+-- nvim-tree
+core.safe_require('nvim-tree', function(tree)
+    map_leader_n('ft', ':NvimTreeToggle<cr>')   -- toggle nvim-tree
+    map_leader_n('<tab>', ':NvimTreeFocus<cr>') -- toggle nvim-tree
+    map_n('<C-b>', ':NvimTreeToggle<cr>')       -- toggle nvim-tree
+end)
 
 -- ***********************
 -- telescope
@@ -120,7 +124,7 @@ end)
 -- ***********************
 -- plugin management(lazy.nvim)
 -- ***********************
-map_leader_n('ll', ':Lazy<cr>') -- lazy menu
+map_leader_n(';l', ':Lazy<cr>') -- lazy menu
 
 -- ***********************
 -- commodities inspired by tpope
@@ -131,6 +135,18 @@ map_n(']<space>', 'o<esc>')
 -- ***********************
 -- lsp
 -- ***********************
+-- mason
+core.safe_require('mason', function(mason)
+    map_leader_n(';m', ':Mason<cr>', { desc = "[lsp] Mason (package manager)" })
+end)
+
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set('n', 'gd', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+-- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -139,6 +155,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
+        --
+        -- displays information about the symbol under the cursor in a floating window
         map_n('gh', vim.lsp.buf.hover, opts)
+
+        -- go to definition
+        map_n('C-]', vim.lsp.buf.definition, opts)
     end
 })

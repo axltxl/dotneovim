@@ -5,5 +5,11 @@
 
 local core = require('core')
 core.safe_require('which-key', function(which_key)
-    which_key.setup {}
+    vim.o.timeout    = true
+    vim.o.timeoutlen = 500
+    which_key.setup {
+        window = {
+            border = "single", --
+        }
+    }
 end)
