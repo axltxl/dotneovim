@@ -30,6 +30,12 @@ core.safe_require('mason', function(mason)
     end)
 end)
 
+-- Initial autocompletion set up
+-- (nvim-cmp -> cmp-nvim-lsp -> luasnip)
+core.safe_require('plugins.conf.lsp.autocompletion', function(autocompletion)
+    autocompletion.setup()
+end)
+
 --
 -- automatically format file upon saving a file
 --

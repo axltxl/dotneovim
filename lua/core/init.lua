@@ -13,12 +13,12 @@ local m = {}
 
 -- log stuff
 function m.log(level, msg)
-    ctx = __FUNC__() .. ':' .. __FILE__()
+    local ctx = __FUNC__() .. ':' .. __FILE__()
     print(">> [" .. level .. "] [" .. ctx .. "] " .. msg)
 end
 
 function m.log_info(msg)
-    m.log("INFO", ctx, msg)
+    m.log("INFO", msg)
 end
 
 function m.log_error(msg)
