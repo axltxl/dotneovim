@@ -6,19 +6,29 @@ local core = require("core")
 
 core.safe_require('lspconfig', function(lspconfig)
     -- lsp server settings
+    -- see: https://github.com/palantir/python-language-server
+    -- see: https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
+    local lsp_server = 'pylsp'
     local lsp_settings = {
         pylsp = {
             plugins = {
-                -- static analysis
+                -- static analysis (linting ...)
+                pylint = {
+                    enabled = true
+                },
+
                 -- autocompletion
+                rope_completion = {
+                    enabled = true
+                },
 
                 -- formatting
-                autopep8 = {
-                    enabled = true
-                }
+                autopep8 = { enabled = false },
+                yapf = { enabled = true },
             }
         }
     }
+
     -- Enable language server with the additional
     -- completion capabilities offered by nvim-cmp
     -- (this is for autocompletion)
@@ -30,5 +40,5 @@ core.safe_require('lspconfig', function(lspconfig)
     end)
 
     -- Finally set up that language server
-    lspconfig.pylsp.setup(lsp_settings)
+    lspconfig[lsp_server].setup(lsp_settings)
 end)

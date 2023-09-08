@@ -1,5 +1,6 @@
 --
 -- autocompletion with nvim-cmp with lsp integration
+-- (including snippets support via luasnip)
 -- based on: https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
 --
 

@@ -16,7 +16,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 --
 -- the plugins themselves
 --
@@ -78,14 +77,22 @@ require("lazy").setup({
     { 'neovim/nvim-lspconfig' },
 
     -- autocompletion ;)
+    -----------
+    -- snippets engine
+    {
+        "L3MON4D3/LuaSnip",
+        -- snippet libraries
+        dependencies = { "rafamadriz/friendly-snippets" },
+    },
+    -- autocompletion suite
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
             'neovim/nvim-lspconfig',
             'hrsh7th/cmp-nvim-lsp',     -- LSP source for nvim-cmp
-            'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-            'L3MON4D3/LuaSnip',         -- Snippets plugin
-        }
+            'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp (luasnip, see below)
+            "L3MON4D3/LuaSnip",
+        },
     },
 
     -- git
@@ -110,4 +117,4 @@ require("lazy").setup({
 })
 
 -- load all plugin configurations
-require('plugins.conf')
+require('core').safe_require('plugins.conf')
