@@ -71,6 +71,21 @@ map_leader_n('wj', ':wincmd j<cr>') -- down
 map_leader_n('wl', ':wincmd l<cr>') -- right
 map_leader_n('wh', ':wincmd h<cr>') -- left
 
+-- resizing
+local window_resize_factor = 5
+map_n('<C-l>', function()
+    vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) + window_resize_factor)
+end)
+map_n('<C-h>', function()
+    vim.api.nvim_win_set_width(0, vim.api.nvim_win_get_width(0) - window_resize_factor)
+end)
+map_n('<C-k>', function()
+    vim.api.nvim_win_set_height(0, vim.api.nvim_win_get_height(0) + window_resize_factor)
+end)
+map_n('<C-j>', function()
+    vim.api.nvim_win_set_height(0, vim.api.nvim_win_get_height(0) - window_resize_factor)
+end)
+
 -- tab management
 map_leader_n('tn', ':tabnew<cr>')      -- new tab
 map_leader_n('td', ':tabclose<cr>')    -- close tab
