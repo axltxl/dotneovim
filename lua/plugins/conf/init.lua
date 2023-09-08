@@ -1,22 +1,24 @@
 --
 -- plugin configuration
 --
+local core = require('core')
+--
 -- load all individual configurations
-require('plugins.conf.telescope')
-require('plugins.conf.lualine')
-require('plugins.conf.nvim-surround')
-require('plugins.conf.nvim-tree')
-require('plugins.conf.nvim-treesitter')
-require('plugins.conf.which-key')
-require('plugins.conf.project')
-require('plugins.conf.nvim-autopairs')
-require('plugins.conf.nvim-trim')
-require('plugins.conf.comment')
-require('plugins.conf.git')
+core.safe_require('plugins.conf.telescope')
+core.safe_require('plugins.conf.lualine')
+core.safe_require('plugins.conf.nvim-surround')
+core.safe_require('plugins.conf.nvim-tree')
+core.safe_require('plugins.conf.nvim-treesitter')
+core.safe_require('plugins.conf.which-key')
+core.safe_require('plugins.conf.project')
+core.safe_require('plugins.conf.nvim-autopairs')
+core.safe_require('plugins.conf.nvim-trim')
+core.safe_require('plugins.conf.comment')
+core.safe_require('plugins.conf.git')
 --
 ---------------------------------------------
 -- Individual configuration for every LSP
 ---------------------------------------------
-require('plugins.conf.lsp')        -- base config
-require("plugins.conf.lsp.lua")    -- lua
-require("plugins.conf.lsp.python") -- python
+core.safe_require('plugins.conf.lsp')        -- base config
+core.safe_require("plugins.conf.lsp.lua")    -- lua
+core.safe_require("plugins.conf.lsp.python") -- python
