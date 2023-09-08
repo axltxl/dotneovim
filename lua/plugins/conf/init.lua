@@ -4,6 +4,7 @@
 local core = require('core')
 --
 -- load all individual configurations
+core.safe_require('plugins.conf.winshift')
 core.safe_require('plugins.conf.telescope')
 core.safe_require('plugins.conf.lualine')
 core.safe_require('plugins.conf.nvim-surround')

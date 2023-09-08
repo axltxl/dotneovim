@@ -35,6 +35,9 @@ require("lazy").setup({
             'nvim-lua/plenary.nvim' },
     },
 
+    -- window management
+    { 'sindrets/winshift.nvim' },
+
     -- treesitter for syntax highlighting et al.
     { 'nvim-treesitter/nvim-treesitter' },
 

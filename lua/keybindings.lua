@@ -86,6 +86,14 @@ map_n('<C-j>', function()
     vim.api.nvim_win_set_height(0, vim.api.nvim_win_get_height(0) - window_resize_factor)
 end)
 
+-- movement (thanks to winshift)
+core.safe_require('winshift', function(_)
+    map_leader_n('wmk', ':WinShift up<cr>') -- up
+    map_leader_n('wmj', ':WinShift down<cr>') -- down
+    map_leader_n('wml', ':WinShift right<cr>') -- right
+    map_leader_n('wmh', ':WinShift left<cr>') -- left
+end)
+
 -- tab management
 map_leader_n('tn', ':tabnew<cr>')      -- new tab
 map_leader_n('td', ':tabclose<cr>')    -- close tab
