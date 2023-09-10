@@ -2,16 +2,24 @@
 -- main nvim config
 --
 
-local core = require("core")
+local layers = require("core.layers")
+
+-- FIXME: doc me
+layers.enable({ "colorscheme"})
+
+--
+-- FIXME: doc me
+layers.boot()
+
 
 -- essentials is always the first
-core.safe_require("essentials")
+-- core.safe_require("essentials")
 
 -- install and configure plugins
-core.safe_require("plugins")
+-- core.safe_require("plugins")
 
 -- load color scheme
-core.safe_require("colorscheme")
+-- core.safe_require("colorscheme")
 
 -- key bindings always go last
-core.safe_require("keybindings")
+-- core.safe_require("keybindings")
