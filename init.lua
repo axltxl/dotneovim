@@ -6,9 +6,9 @@ local layers = require("core.layers")
 
 -- FIXME: doc me
 layers.enable({
+    -- Basics
+    ----------------------
     "foundation", -- the very basics
-    "colorscheme", -- color scheme
-    "which-key", -- spacemacs like ;)
 
     "window", -- window management
     "tab", -- tab management
@@ -16,22 +16,21 @@ layers.enable({
     "telescope", -- fuzzy finder
     "file", -- file management
 
+    -- Look and feel
+    ----------------------
+    "colorscheme", -- color scheme
+    "lualine",
+    "which-key", -- spacemacs like ;)
+
+    -- Basics of programming
+    ----------------------
+    "git", -- repositories management
+    "surround",
+    "autopairs",
+    "autotrim",
+    "comment",
 })
 
 --
 -- FIXME: doc me
 layers.boot()
-
-
--- FIXME: remove me
--- essentials is always the first
--- core.safe_require("essentials")
-
--- install and configure plugins
--- core.safe_require("plugins")
-
--- load color scheme
--- core.safe_require("colorscheme")
-
--- key bindings always go last
--- core.safe_require("keybindings")
