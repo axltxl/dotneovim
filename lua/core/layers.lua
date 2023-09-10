@@ -55,7 +55,6 @@ function m.enable(layers)
     for i, layer in ipairs(layers) do
         core.safe_require('layers.' .. layer, function(l)
             table.insert(layermods, l)
-            core.log_info("layer enabled: " .. layer)
         end)
     end
 end

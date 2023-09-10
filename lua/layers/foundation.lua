@@ -3,6 +3,13 @@
 -- the essentials go in here
 --
 
+local keys = require('core.keys')
+
+-- tab size
+local tabsize = 4
+
+-- leader key
+local leader = ' '
 
 -- we need this to export the module
 local m = {}
@@ -14,7 +21,6 @@ end
 
 -- set up configuration for this layer
 function m.setup()
-    local tabsize = 4
 
     -- disable netrw at the very start of your init.lua
     -- (this is required by nvim-tree, see: plugins.lua)
@@ -41,6 +47,32 @@ function m.setup()
         pattern = { "*" },
         command = [[%s/\s\+$//e]],
     })
+
+    -- set leader key
+    vim.g.mapleader = leader
+
+    -- ***********************
+    -- Bad habits
+    -- ***********************
+    -- disable backspace
+    keys.map_n('<BS>', '<Nop>')
+    keys.map_v('<BS>', '<Nop>')
+
+    -- ***********************
+    -- editor general management
+    -- ***********************
+    keys.map_leader_n(';q', ':wqall!<cr>') -- quit neovim (autosave every buffer)
+
+    -- ***********************
+    -- plugin management(lazy.nvim)
+    -- ***********************
+    keys.map_leader_n(';l', ':Lazy<cr>') -- lazy menu
+
+    -- ***********************
+    -- commodities inspired by tpope
+    -- ***********************
+    keys.map_n('[<space>', 'O<esc>')
+    keys.map_n(']<space>', 'o<esc>')
 end
 
 -- export the module

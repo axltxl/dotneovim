@@ -6,9 +6,9 @@ local layers = require("core.layers")
 
 -- FIXME: doc me
 layers.enable({
-    -- the very basics
-    "foundation",
-    "colorscheme",
+    "foundation", -- the very basics
+    "colorscheme", -- color scheme
+    "window", -- window management
 })
 
 --
