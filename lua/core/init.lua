@@ -47,8 +47,6 @@ function m.if_mod(mod_name, callback)
     local ok, mod = pcall(require, mod_name)
     if ok then
         callback(mod)
-    else
-        print("HOOOOOLA: " .. mod_name)
     end
 end
 

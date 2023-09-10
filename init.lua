@@ -19,16 +19,24 @@ layers.enable({
     -- Look and feel
     ----------------------
     "colorscheme", -- color scheme
-    "lualine",
+    "lualine", -- powerline
     "which-key", -- spacemacs like ;)
 
     -- Basics of programming
     ----------------------
     "git", -- repositories management
-    "surround",
-    "autopairs",
-    "autotrim",
-    "comment",
+    "surround", -- vim-surround
+    "autopairs", -- auto close pairs
+    "autotrim", -- trim files upon saving
+    "comment", -- toggle comment (nerdcommenter)
+    "project", -- project management
+
+    -- CONTINUE HERE TOMORROW
+    -- "treesitter"
+    -- "lsp",
+    -- "snippets",
+    -- "lang_lua",
+    -- "lang_python",
 })
 
 --
