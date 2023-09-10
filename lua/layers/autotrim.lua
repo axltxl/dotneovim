@@ -18,9 +18,17 @@ end
 
 -- set up configuration for this layer
 function m.setup()
+    -- set up plugin
     core.safe_require('trim', function(trim)
         trim.setup {}
     end)
+
+    -- automatically remove trailing
+    -- whitespace upon saving a file
+    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        pattern = { "*" },
+        command = [[%s/\s\+$//e]],
+    })
 end
 
 -- export the module

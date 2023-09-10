@@ -41,13 +41,6 @@ function m.setup()
     vim.opt.mouse            = ""      -- disable mouse
     vim.opt.termguicolors    = true    -- enable terminal colors
 
-    -- automatically remove trailing
-    -- whitespace upon saving a file
-    vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-        pattern = { "*" },
-        command = [[%s/\s\+$//e]],
-    })
-
     -- set leader key
     vim.g.mapleader = leader
 
