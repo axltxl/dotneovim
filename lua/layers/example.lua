@@ -10,7 +10,6 @@ local m = {}
 -- list of plugins required by this layer
 function m.get_plugins()
     return nil
-    }
 end
 
 -- set up configuration for this layer

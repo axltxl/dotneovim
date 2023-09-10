@@ -5,7 +5,11 @@
 local layers = require("core.layers")
 
 -- FIXME: doc me
-layers.enable({ "colorscheme"})
+layers.enable({
+    -- the very basics
+    "foundation",
+    "colorscheme",
+})
 
 --
 -- FIXME: doc me
