@@ -8,7 +8,14 @@ local layers = require("core.layers")
 layers.enable({
     "foundation", -- the very basics
     "colorscheme", -- color scheme
+    "which-key", -- spacemacs like ;)
+
     "window", -- window management
+    "tab", -- tab management
+
+    "telescope", -- fuzzy finder
+    "file", -- file management
+
 })
 
 --
@@ -16,6 +23,7 @@ layers.enable({
 layers.boot()
 
 
+-- FIXME: remove me
 -- essentials is always the first
 -- core.safe_require("essentials")
 

@@ -40,5 +40,17 @@ function m.safe_require(mod_name, callback)
     return ok, mod
 end
 
+-- like safe_require, but silent.
+-- used for when you want something to be
+-- run only if a module is the import path
+function m.if_mod(mod_name, callback)
+    local ok, mod = pcall(require, mod_name)
+    if ok then
+        callback(mod)
+    else
+        print("HOOOOOLA: " .. mod_name)
+    end
+end
+
 -- export the module
 return m

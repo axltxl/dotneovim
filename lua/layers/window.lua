@@ -3,6 +3,7 @@
 -- window management
 --
 
+local core = require('core')
 local keys = require('core.keys')
 
 -- we need this to export the module
@@ -17,6 +18,33 @@ end
 
 -- set up configuration for this layer
 function m.setup()
+    -- setup windshift
+    core.safe_require('winshift', function(winshift)
+        winshift.setup({
+            highlight_moving_win = true, -- Highlight the window being moved
+            focused_hl_group = "Visual", -- The highlight group used for the moving window
+            moving_win_options = {
+                -- These are local options applied to the moving window while it's
+                -- being moved. They are unset when you leave Win-Move mode.
+                wrap = false,
+                cursorline = false,
+                cursorcolumn = false,
+                colorcolumn = "",
+            },
+            keymaps = {
+                disable_defaults = false, -- Disable the default keymaps
+                win_move_mode = {
+                    ["h"] = "left",
+                    ["j"] = "down",
+                    ["k"] = "up",
+                    ["l"] = "right",
+                }
+            }
+        })
+    end)
+
+    -- keys section --
+
     -- creation and deletion
     keys.map_leader_n('wv', ':vsplit<cr>', { desc = "split vertically" })  -- split vertically
     keys.map_leader_n('ws', ':split<cr>', { desc = "split horizontally" }) -- split horizontally
