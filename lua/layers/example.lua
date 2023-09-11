@@ -3,6 +3,7 @@
 -- example layer
 --
 
+local core = require('core')
 
 -- we need this to export the module
 local m = {}

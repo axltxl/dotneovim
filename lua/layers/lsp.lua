@@ -14,14 +14,10 @@ local m = {}
 -- list of plugins required by this layer
 function m.get_plugins()
     return {
-        -- base lsp package manager, there's an LSP
-        -- for every language, so ...
-        { 'williamboman/mason.nvim' },
-        --
         -- this will instruct our mason what LSPs
         -- to install
         { 'williamboman/mason-lspconfig.nvim' },
-        --
+
         -- .. and this one will configure every LSP
         -- individually
         { 'neovim/nvim-lspconfig' },
@@ -33,11 +29,7 @@ function m.setup()
     -- set log level on lspconfig
     vim.lsp.set_log_level("debug")
 
-    -- base lsp package manager
-    core.safe_require('mason', function(mason)
-        -- mason configuration
-        mason.setup()
-
+    core.if_mod('mason', function(_)
         -- this is where we tell mason what LSPs
         -- do we want to be installed
         core.safe_require('mason-lspconfig', function(mason_lspconfig)
@@ -46,11 +38,8 @@ function m.setup()
     end)
 
     -- ***********************
-    -- key mappings
+    -- Key mappings
     -- ***********************
-    core.safe_require('mason', function(mason)
-        keys.map_leader_n(';lm', ':Mason<cr>', { desc = "[lsp] Mason (package manager)" })
-    end)
 
     -- Mappings for Diagnostics
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
