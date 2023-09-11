@@ -25,6 +25,7 @@ layers.enable({
     -- Basics of programming
     ----------------------
     "git", -- repositories management
+    "treesitter", -- syntax highlighting et al.
     "surround", -- vim-surround
     "autopairs", -- auto close pairs
     "autotrim", -- trim files upon saving
