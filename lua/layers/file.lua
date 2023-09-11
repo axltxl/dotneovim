@@ -20,7 +20,6 @@ end
 
 -- set up configuration for this layer
 function m.setup()
-
     -- set up plugins (nvim-tree)
     core.safe_require('nvim-tree', function(tree)
         -- disable netrw at the very start of your init.lua

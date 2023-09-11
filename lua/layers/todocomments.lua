@@ -23,13 +23,11 @@ end
 -- set up configuration for this layer
 function m.setup()
     core.safe_require('todo-comments', function(todo)
-
         -- set up plugins
         todo.setup {}
 
         -- Key mappings
         core.if_mod('trouble', function(trouble)
-
             -- use trouble to list all TODOs
             keys.map_leader_n(';df', function()
                 trouble.open('todo')

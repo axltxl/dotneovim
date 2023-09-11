@@ -15,7 +15,7 @@ function m.get_plugins()
         {
             "NeogitOrg/neogit",
             dependencies = {
-                "nvim-lua/plenary.nvim",         -- required
+                "nvim-lua/plenary.nvim", -- required
             }
         }
     }

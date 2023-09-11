@@ -12,9 +12,9 @@ local m = {}
 function m.get_plugins()
     return {
         { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lsp' },     -- LSP source for nvim-cmp
-        { 'saadparwaiz1/cmp_luasnip' }, -- Snippets source for nvim-cmp (luasnip, see below)
-        { 'L3MON4D3/LuaSnip' }, -- snippets engine of choice
+        { 'hrsh7th/cmp-nvim-lsp' },        -- LSP source for nvim-cmp
+        { 'saadparwaiz1/cmp_luasnip' },    -- Snippets source for nvim-cmp (luasnip, see below)
+        { 'L3MON4D3/LuaSnip' },            -- snippets engine of choice
         { "rafamadriz/friendly-snippets" } -- an extra snippet library
     }
 end

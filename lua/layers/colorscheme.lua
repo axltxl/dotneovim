@@ -2,8 +2,8 @@
 -- layer: color scheme
 --
 
-local core = require('core')
-local keys = require('core.keys')
+local core              = require('core')
+local keys              = require('core.keys')
 
 -- my color themes of choice
 local colorscheme_light = 'github_light'
@@ -38,7 +38,7 @@ function m.setup()
     -- key bindings
     -- -------------
     -- toggle between light and dark color themes
-    keys.map_leader_n(';c<space>', function() toggle() end, {desc = "toggle light/dark"})
+    keys.map_leader_n(';c<space>', function() toggle() end, { desc = "toggle light/dark" })
 
     -- list color themes on Telescope
     core.if_mod('telescope', function(telescope)
