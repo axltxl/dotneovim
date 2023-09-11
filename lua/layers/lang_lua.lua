@@ -17,22 +17,25 @@ end
 function m.setup()
     core.if_mod('mason-registry', function(mason_registry)
         -- make sure lua lsp has been installed
+        ---------------------------------------
         if not mason_registry.is_installed(lsp_pkg) then
             vim.cmd('MasonInstall ' .. lsp_pkg)
         end
 
+        -- lsp server settings
+        ------------------------------
         core.if_mod('lspconfig', function(lspconfig)
-            -- lsp server settings
             local lsp_settings = {}
 
+            -- ***********************************
+            -- Enable autocompletion via nvim-cmp
+            -- (needs autocompletion layer enabled)
+            -- ***********************************
             -- Enable language server with the additional
             -- completion capabilities offered by nvim-cmp
             -- (this is for autocompletion)
-            core.if_mod('plugins.conf.lsp.autocompletion', function(autocompletion)
-                local nvim_cmp_capabilities = autocompletion.get_nvim_cmp_capabilities()
-                if nvim_cmp_capabilities ~= nil then
-                    lsp_settings['capabilities'] = nvim_cmp_capabilities
-                end
+            core.if_mod('cmp_nvim_lsp', function(cmp_nvim_lsp)
+                lsp_settings['capabilities'] = cmp_nvim_lsp.default_capabilities()
             end)
 
             -- Finally set up that language server

@@ -34,8 +34,7 @@ layers.enable({
     -- the good stuff
     "mason", -- package manager for LSPs, linters, etc.
     "lsp",
-    -- "lsp_autocompletion"
-    -- "lsp_snippets",
+    "lsp_autocompletion",
     "lang_lua",
     -- "lsp_python",
     -- "lsp_diagnostics",
