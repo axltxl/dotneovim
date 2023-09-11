@@ -9,10 +9,8 @@ layers.enable({
     -- Basics
     ----------------------
     "foundation", -- the very basics
-
     "window", -- window management
     "tab", -- tab management
-
     "telescope", -- fuzzy finder
     "file", -- file management
 
@@ -31,13 +29,15 @@ layers.enable({
     "autotrim", -- trim files upon saving
     "comment", -- toggle comment (nerdcommenter)
     "project", -- project management
+    -- "todos",
 
-    -- CONTINUE HERE TOMORROW
-    -- "treesitter"
-    -- "lsp",
-    -- "snippets",
-    -- "lang_lua",
-    -- "lang_python",
+    -- the good stuff
+    "lsp",
+    -- "lsp_autocompletion"
+    -- "lsp_snippets",
+    "lang_lua",
+    -- "lsp_python",
+    -- "lsp_diagnostics",
 })
 
 --
