@@ -3,7 +3,8 @@
 -- LSP, formatting et al. support for lua
 --
 local core = require('core')
-local lsp_pkg = 'lua-language-server'
+local mason_pkg = 'lua-language-server'
+local lsp_server = 'lua_ls'
 
 -- we need this to export the module
 local m = {}
@@ -18,8 +19,8 @@ function m.setup()
     core.if_mod('mason-registry', function(mason_registry)
         -- make sure lua lsp has been installed
         ---------------------------------------
-        if not mason_registry.is_installed(lsp_pkg) then
-            vim.cmd('MasonInstall ' .. lsp_pkg)
+        if not mason_registry.is_installed(mason_pkg) then
+            vim.cmd('MasonInstall ' .. mason_pkg)
         end
 
         -- lsp server settings
@@ -39,7 +40,7 @@ function m.setup()
             end)
 
             -- Finally set up that language server
-            lspconfig.lua_ls.setup(lsp_settings)
+            lspconfig[lsp_server].setup(lsp_settings)
         end)
     end)
 end

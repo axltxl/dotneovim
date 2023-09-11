@@ -41,6 +41,11 @@ function m.setup()
     -- Key mappings
     -- ***********************
 
+    -- Format file using local lsp
+    keys.map_leader_n(';f', function()
+        vim.lsp.buf.format { async = false }
+    end)
+
     -- Mappings for Diagnostics
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
     keys.map_n('gd', vim.diagnostic.open_float)
