@@ -22,12 +22,6 @@ end
 -- set up configuration for this layer
 function m.setup()
 
-    -- disable netrw at the very start of your init.lua
-    -- (this is required by nvim-tree, see: plugins.lua)
-    -- FIXME: move me
-    vim.g.loaded_netrw       = 1
-    vim.g.loaded_netrwPlugin = 1
-
     vim.opt.showcmd          = true
     vim.opt.autoindent       = true    -- automatic indentation
     vim.opt.expandtab        = true    -- spaces for indentation

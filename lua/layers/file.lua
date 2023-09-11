@@ -23,6 +23,12 @@ function m.setup()
 
     -- set up plugins (nvim-tree)
     core.safe_require('nvim-tree', function(tree)
+        -- disable netrw at the very start of your init.lua
+        -- (this is required by nvim-tree, see: plugins.lua)
+        vim.g.loaded_netrw       = 1
+        vim.g.loaded_netrwPlugin = 1
+
+        -- set up nvim-tree
         tree.setup {
             -- sync root with current cwd (this is important for when switching between projects)
             sync_root_with_cwd = true,
