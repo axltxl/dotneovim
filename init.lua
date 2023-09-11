@@ -36,7 +36,7 @@ layers.enable({
     "lsp",
     "lsp_autocompletion",
     "lang_lua",
-    -- "lsp_python",
+    "lang_python",
     -- "lsp_diagnostics",
 })
 
