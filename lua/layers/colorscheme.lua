@@ -7,10 +7,10 @@ local keys              = require('core.keys')
 
 -- my color themes of choice
 local colorscheme_light = 'github_light'
-local colorscheme_dark  = 'github_dark'
+local colorscheme_dark  = 'catppuccin_macchiato'
 
 -- toggle between light and dark color themes
-function toggle()
+local function toggle()
     if vim.g.colors_name == colorscheme_dark then
         vim.cmd.colorscheme(colorscheme_light)
     else
@@ -26,7 +26,8 @@ function m.get_plugins()
     return {
         -- all my color themes go in here ;)
         { 'projekt0n/github-nvim-theme' },
-        { 'morhetz/gruvbox' }
+        { 'morhetz/gruvbox' },
+        {'catppuccin/vim'},
     }
 end
 
@@ -41,7 +42,7 @@ function m.setup()
     keys.map_leader_n(';c<space>', function() toggle() end, { desc = "toggle light/dark" })
 
     -- list color themes on Telescope
-    core.if_mod('telescope', function(telescope)
+    core.if_mod('telescope', function(_)
         keys.map_leader_n(';cc', function() vim.cmd([[Telescope colorscheme]]) end)
     end)
 end
