@@ -6,8 +6,8 @@ local core              = require('core')
 local keys              = require('core.keys')
 
 -- my color themes of choice
-local colorscheme_light = 'github_light'
-local colorscheme_dark  = 'catppuccin_macchiato'
+local colorscheme_light = 'rose-pine-dawn'
+local colorscheme_dark  = 'rose-pine-moon'
 
 -- toggle between light and dark color themes
 local function toggle()
@@ -27,7 +27,8 @@ function m.get_plugins()
         -- all my color themes go in here ;)
         { 'projekt0n/github-nvim-theme' },
         { 'morhetz/gruvbox' },
-        {'catppuccin/vim'},
+        { 'catppuccin/vim' },
+        { 'rose-pine/neovim' },
     }
 end
 

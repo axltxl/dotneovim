@@ -67,7 +67,6 @@ function m.setup()
         core.create_autocmd('CoreLayersDone',
             function()
                 local lsp_settings = config.get('lsp.efm.settings')
-                print(lsp_settings.settings.filetypes)
 
                 -- Enable language server with the additional
                 -- completion capabilities offered by nvim-cmp
