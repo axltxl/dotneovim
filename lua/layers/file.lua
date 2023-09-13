@@ -43,7 +43,7 @@ function m.setup()
     keys.map_leader_n('fs', ':w<cr>')   -- save current buffer
 
     -- nvim-tree
-    core.safe_require('nvim-tree', function(tree)
+    core.safe_require('nvim-tree', function(_)
         keys.map_leader_n('ft', ':NvimTreeToggle<cr>')   -- toggle nvim-tree
         keys.map_leader_n('<tab>', ':NvimTreeFocus<cr>') -- toggle nvim-tree
         keys.map_n('<C-b>', ':NvimTreeToggle<cr>')       -- toggle nvim-tree
