@@ -26,7 +26,7 @@ function m.setup()
     vim.opt.expandtab     = true    -- spaces for indentation
     vim.opt.tabstop       = tabsize -- how many spaces?
     vim.opt.list          = true
-    vim.opt.listchars     = { lead = '.', eol = '↵', space = '.', trail = '.', extends = '<', precedes = '>', }
+    vim.opt.listchars     = { lead = '.', eol = '↵', space = ' ', trail = '.', extends = '<', precedes = '>', }
     vim.opt.shiftwidth    = tabsize --  << >>
     vim.opt.swapfile      = false   -- disable swap files and swap files by default
     vim.opt.number        = true    -- display line numbers
