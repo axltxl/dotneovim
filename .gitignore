@@ -1,1 +1,4 @@
+*cache
+log/*
+!log/.gitkeep
 TODO
