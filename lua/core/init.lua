@@ -51,7 +51,7 @@ end
 function m.safe_require(mod_name, callback)
     local ok, mod = pcall(require, mod_name)
     if not ok then
-        m.log_error(string.format("%s: failed to load module"))
+        m.log_error(string.format("%s: failed to load module", mod_name))
         m.log_error(debug.traceback())
     elseif callback ~= nil then
         callback(mod)

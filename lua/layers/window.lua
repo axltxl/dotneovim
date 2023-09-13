@@ -5,9 +5,14 @@
 
 local core = require('core')
 local keys = require('core.keys')
+local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
+
+local function desc(msg)
+    return utils.desc('window', msg)
+end
 
 -- list of plugins required by this layer
 function m.get_plugins()
@@ -46,15 +51,15 @@ function m.setup()
     -- keys section --
 
     -- creation and deletion
-    keys.map_leader_n('wv', ':vsplit<cr>', { desc = "split vertically" })  -- split vertically
-    keys.map_leader_n('ws', ':split<cr>', { desc = "split horizontally" }) -- split horizontally
-    keys.map_leader_n('wd', ':q!<cr>', { desc = "close current window" })  -- remove split
+    keys.map_leader_n('wv', ':vsplit<cr>', { desc = desc("split vertically") })  -- split vertically
+    keys.map_leader_n('ws', ':split<cr>', { desc = desc("split horizontally") }) -- split horizontally
+    keys.map_leader_n('wd', ':q!<cr>', { desc = desc("close current window") })  -- remove split
 
     -- navigation
-    keys.map_leader_n('wk', ':wincmd k<cr>') -- up
-    keys.map_leader_n('wj', ':wincmd j<cr>') -- down
-    keys.map_leader_n('wl', ':wincmd l<cr>') -- right
-    keys.map_leader_n('wh', ':wincmd h<cr>') -- left
+    keys.map_leader_n('wk', ':wincmd k<cr>', { desc = desc('go to window above') })        -- up
+    keys.map_leader_n('wj', ':wincmd j<cr>', { desc = desc('go to window below') })        -- down
+    keys.map_leader_n('wl', ':wincmd l<cr>', { desc = desc('go to window to the right') }) -- right
+    keys.map_leader_n('wh', ':wincmd h<cr>', { desc = desc('go to window to the left') })  -- left
 
     -- resizing
     local window_resize_factor = 5
@@ -73,10 +78,10 @@ function m.setup()
 
     -- movement (thanks to winshift)
     core.safe_require('winshift', function(_)
-        keys.map_leader_n('wmk', ':WinShift up<cr>')    -- up
-        keys.map_leader_n('wmj', ':WinShift down<cr>')  -- down
-        keys.map_leader_n('wml', ':WinShift right<cr>') -- right
-        keys.map_leader_n('wmh', ':WinShift left<cr>')  -- left
+        keys.map_leader_n('wmk', ':WinShift up<cr>', { desc = desc('move window up') })  -- up
+        keys.map_leader_n('wmj', ':WinShift down<cr>', { desc = desc('move window down') }) -- down
+        keys.map_leader_n('wml', ':WinShift right<cr>', { desc = desc('move window to the right') }) -- right
+        keys.map_leader_n('wmh', ':WinShift left<cr>', { desc = desc('move window to the left') }) -- left
     end)
 end
 

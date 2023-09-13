@@ -4,6 +4,11 @@
 --
 
 local keys = require('core.keys')
+local utils = require('core.utils')
+
+local function desc(msg)
+    return utils.desc('editor', msg)
+end
 
 -- tab size
 local tabsize = 4
@@ -47,12 +52,12 @@ function m.setup()
     -- ***********************
     -- editor general management
     -- ***********************
-    keys.map_leader_n(';q', ':wqall!<cr>') -- quit neovim (autosave every buffer)
+    keys.map_leader_n(';q', ':wqall!<cr>', { desc = desc('exit vim') }) -- quit neovim (autosave every buffer)
 
     -- ***********************
     -- plugin management(lazy.nvim)
     -- ***********************
-    keys.map_leader_n(';l', ':Lazy<cr>') -- lazy menu
+    keys.map_leader_n(';l', ':Lazy<cr>', {desc = desc('Lazy (plugin manager)')}) -- lazy menu
 
     -- ***********************
     -- commodities inspired by tpope

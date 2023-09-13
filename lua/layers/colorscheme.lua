@@ -4,10 +4,15 @@
 
 local core              = require('core')
 local keys              = require('core.keys')
+local utils             = require('core.utils')
 
 -- my color themes of choice
 local colorscheme_light = 'rose-pine-dawn'
 local colorscheme_dark  = 'rose-pine-moon'
+
+local function desc(msg)
+    return utils.desc('colorscheme', msg)
+end
 
 -- toggle between light and dark color themes
 local function toggle()
@@ -40,12 +45,12 @@ function m.setup()
     -- key bindings
     -- -------------
     -- toggle between light and dark color themes
-    keys.map_leader_n(';c<space>', function() toggle() end, { desc = "toggle light/dark" })
+    keys.map_leader_n(';c<space>', function() toggle() end, { desc = desc("toggle light/dark") })
 
     -- list color themes on Telescope
     core.if_mod('telescope', function(_)
         keys.map_leader_n(';cc', function() vim.cmd([[Telescope colorscheme]]) end)
-    end)
+    end, { desc = desc("set color scheme") })
 end
 
 -- export the module

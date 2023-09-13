@@ -5,6 +5,7 @@
 
 local core = require('core')
 local keys = require('core.keys')
+local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
@@ -39,7 +40,7 @@ function m.setup()
             telescope.load_extension('projects')
 
             -- key bindings (open projects in telescope)
-            keys.map_leader_n('pp', telescope.extensions.projects.projects)
+            keys.map_leader_n('pp', telescope.extensions.projects.projects, {desc = utils.desc('project', 'show projects')})
         end)
     end)
 end

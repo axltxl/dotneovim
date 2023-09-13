@@ -7,6 +7,7 @@
 
 local core = require('core')
 local keys = require('core.keys')
+local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
@@ -30,7 +31,7 @@ function m.setup()
         -- ***********************
         -- key mappings
         -- ***********************
-        keys.map_leader_n(';lm', ':Mason<cr>', { desc = "mason (package manager)" })
+        keys.map_leader_n(';lm', ':Mason<cr>', { desc = utils.desc("mason", "mason (package manager)") })
     end)
 end
 

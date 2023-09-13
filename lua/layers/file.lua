@@ -4,6 +4,11 @@
 
 local core = require('core')
 local keys = require('core.keys')
+local utils = require('core.utils')
+
+local function desc(msg)
+    return utils.desc('files', msg)
+end
 
 -- we need this to export the module
 local m = {}
@@ -39,14 +44,14 @@ function m.setup()
 
     -- keys section --
     -- creation and deletion
-    keys.map_leader_n('fn', ':new<cr>') -- new buffer on window
-    keys.map_leader_n('fs', ':w<cr>')   -- save current buffer
+    keys.map_leader_n('fn', ':new<cr>', { desc = desc('new buffer') }) -- new buffer on window
+    keys.map_leader_n('fs', ':w<cr>', {desc = desc('save buffer to a file')})                      -- save current buffer
 
     -- nvim-tree
     core.safe_require('nvim-tree', function(_)
-        keys.map_leader_n('ft', ':NvimTreeToggle<cr>')   -- toggle nvim-tree
-        keys.map_leader_n('<tab>', ':NvimTreeFocus<cr>') -- toggle nvim-tree
-        keys.map_n('<C-b>', ':NvimTreeToggle<cr>')       -- toggle nvim-tree
+        keys.map_leader_n('ft', ':NvimTreeToggle<cr>', { desc = desc('toggle tree') })  -- toggle nvim-tree
+        keys.map_leader_n('<tab>', ':NvimTreeFocus<cr>', { desc = desc('focus tree') }) -- toggle nvim-tree
+        keys.map_n('<C-b>', ':NvimTreeToggle<cr>', { desc = desc('toggle tree') })      -- toggle nvim-tree
     end)
 
     -- ***********************
@@ -60,9 +65,8 @@ function m.setup()
                     no_ignore = true
                 })
             end)
-        keys.map_leader_n('fg', builtin.live_grep)
-        keys.map_leader_n('fb', builtin.buffers)
-        keys.map_leader_n('fh', builtin.help_tags)
+        keys.map_leader_n('fg', builtin.live_grep, { desc = desc('live grep') })
+        keys.map_leader_n('fb', builtin.buffers, {desc = desc('list buffers')})
     end)
 end
 

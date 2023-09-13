@@ -7,6 +7,11 @@
 
 local core = require('core')
 local keys = require('core.keys')
+local utils = require('core.utils')
+
+local function desc(msg)
+    return utils.desc('LSP', msg)
+end
 
 -- we need this to export the module
 local m = {}
@@ -30,13 +35,13 @@ local function setup_keymappings()
     -- Format file using local lsp
     keys.map_leader_n(';f', function()
         vim.lsp.buf.format { async = false }
-    end)
+    end, { desc = desc('format file') })
 
     -- Mappings for Diagnostics
     -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    keys.map_n('gd', vim.diagnostic.open_float)
-    keys.map_n('[d', vim.diagnostic.goto_prev)
-    keys.map_n(']d', vim.diagnostic.goto_next)
+    keys.map_n('gd', vim.diagnostic.open_float, { desc = desc('popup diagnostic') })
+    keys.map_n('[d', vim.diagnostic.goto_prev, { desc = desc('go to previous diagnostic') })
+    keys.map_n(']d', vim.diagnostic.goto_next, {desc = desc('go to next diagnostic')})
     -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
     -- Use LspAttach autocommand to only map the following keys

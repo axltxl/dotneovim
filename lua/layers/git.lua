@@ -5,6 +5,7 @@
 
 local core = require('core')
 local keys = require('core.keys')
+local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
@@ -28,7 +29,7 @@ function m.setup()
         neogit.setup {}
 
         -- key mappings
-        keys.map_leader_n('gs', function() neogit.open() end)
+        keys.map_leader_n('gs', function() neogit.open() end, {desc = utils.desc('git', 'neogit')})
     end)
 end
 

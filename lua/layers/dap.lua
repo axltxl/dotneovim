@@ -5,9 +5,14 @@
 
 local core = require('core')
 local keys = require('core.keys')
+local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
+
+local function desc(msg)
+    return utils.desc('DAP', msg)
+end
 
 -- list of plugins required by this layer
 function m.get_plugins()
@@ -15,10 +20,6 @@ function m.get_plugins()
         { 'mfussenegger/nvim-dap' },
         { 'rcarriga/nvim-dap-ui' },
     }
-end
-
-local function desc(info)
-    return string.format("DAP > %s", info)
 end
 
 -- set up key mappings
