@@ -6,7 +6,7 @@
 -- is avoided
 --
 
-core = require('core')
+local core = require('core')
 
 -- we need this to export the module
 local m = {}
@@ -16,7 +16,7 @@ local m = {}
 local layermods = {}
 
 -- Bootstrap plugin manager (lazy)
-function plugin_manager_setup()
+local function plugin_manager_setup()
     -- install lazy.nvim (plugin manager) automatically
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     if not vim.loop.fs_stat(lazypath) then
@@ -33,12 +33,12 @@ function plugin_manager_setup()
 end
 
 -- install the plugins themselves
-function plugin_install()
+local function plugin_install()
     local plugins = {}
-    for i, lm in ipairs(layermods) do
+    for _, lm in ipairs(layermods) do
         local lplugins = lm.get_plugins()
         if lplugins ~= nil then
-            for i, lplug in ipairs(lplugins) do
+            for _, lplug in ipairs(lplugins) do
                 table.insert(plugins, lplug)
             end
         end
@@ -52,7 +52,7 @@ end
 -- get_plugins() -> returns a table of plugins alla lazy, otherwise nil if the layer doesn't need plugins to be installed
 -- setup() -> this will be invoked when boot() is invoked, doesn't have to return
 function m.enable(layers)
-    for i, layer in ipairs(layers) do
+    for _, layer in ipairs(layers) do
         core.safe_require('layers.' .. layer, function(l)
             table.insert(layermods, l)
         end)
@@ -70,9 +70,12 @@ function m.boot()
     plugin_install()
 
     -- set up each layer in order
-    for i, lm in ipairs(layermods) do
+    for _, lm in ipairs(layermods) do
         lm.setup()
     end
+
+    -- Trigger 'CoreLayerDone' event (pattern)
+    core.exec_autocmds('CoreLayersDone')
 end
 
 -- export the module

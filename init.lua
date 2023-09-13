@@ -36,13 +36,15 @@ layers.enable({
     -- the good stuff
     "mason",              -- package manager for LSPs, linters, etc.
     "lsp",                -- lsp configuration
+    "dap",                -- Debug Adapter protocol configuration
     "lsp_autocompletion", -- lsp-powered autocompletion + snippet engine
-    "trouble",            --diagnostics panel
+    "lsp_efm",            -- efm-langserver (general purpose LSP, can be used by several languages)
+    "trouble",            -- diagnostics panel
     "todocomments",       -- keep track of FIXMEs and TODO comments in a project, needs trouble
 
     -- programming languages support
-    "lang_lua",    -- lua completion, lsp, etc.
-    "lang_python", -- lua completion, lsp, etc.
+    "lang_lua",       -- lua completion, lsp, etc.
+    "lang_python_v2", -- python completion, lsp, etc.
 })
 
 --

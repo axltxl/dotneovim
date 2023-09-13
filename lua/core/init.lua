@@ -2,11 +2,9 @@
 -- essential stuff used all throughout
 -- my config ;)
 
-function __FILE__() return debug.getinfo(2, 'S').source end
-
-function __LINE__() return debug.getinfo(2, 'l').currentline end
-
-function __FUNC__() return debug.getinfo(2, 'n').name end
+local function __FILE__() return debug.getinfo(2, 'S').source end
+local function __LINE__() return debug.getinfo(2, 'l').currentline end
+local function __FUNC__() return debug.getinfo(2, 'n').name end
 
 -- we need this to export the module
 local m = {}
@@ -23,6 +21,28 @@ end
 
 function m.log_error(msg)
     m.log("ERROR", msg)
+end
+
+-- autocommands group used by this library
+-- ----------------------------------------
+-- custom autocommands are triggered by this library on the 'Core'
+-- group. In order to subscribe to events on that group, you can
+-- use m.create_autocmd providing a callback function
+local main_autocmd_group  = vim.api.nvim_create_augroup('Core', {clear = true})
+
+-- Easily create an User autocommand, which is kinda nightmarish
+-- to understand
+function m.create_autocmd(pattern_name, callback)
+    vim.api.nvim_create_autocmd('User', {
+        group = main_autocmd_group,
+        pattern = pattern_name,
+        callback = callback
+    })
+end
+
+-- Execute custom autocommand
+function m.exec_autocmds(pattern_name)
+    vim.api.nvim_exec_autocmds('User', {group = main_autocmd_group, pattern = pattern_name})
 end
 
 -- safe require

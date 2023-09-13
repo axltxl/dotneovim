@@ -24,23 +24,9 @@ function m.get_plugins()
     }
 end
 
--- set up configuration for this layer
-function m.setup()
-    -- set log level on lspconfig
-    vim.lsp.set_log_level("debug")
-
-    core.if_mod('mason', function(_)
-        -- this is where we tell mason what LSPs
-        -- do we want to be installed
-        core.safe_require('mason-lspconfig', function(mason_lspconfig)
-            mason_lspconfig.setup()
-        end)
-    end)
-
-    -- ***********************
-    -- Key mappings
-    -- ***********************
-
+-- Key mappings
+-- ***********************
+local function setup_keymappings()
     -- Format file using local lsp
     keys.map_leader_n(';f', function()
         vim.lsp.buf.format { async = false }
@@ -69,9 +55,26 @@ function m.setup()
             keys.map_n('gh', vim.lsp.buf.hover, opts)
 
             -- go to definition
-            keys.map_n('C-]', vim.lsp.buf.definition, opts)
+            keys.map_n('<C-]>', vim.lsp.buf.definition, opts)
         end
     })
+end
+
+-- set up configuration for this layer
+function m.setup()
+    -- set log level on lspconfig
+    vim.lsp.set_log_level("debug")
+
+    core.if_mod('mason', function(_)
+        -- this is where we tell mason what LSPs
+        -- do we want to be installed
+        core.safe_require('mason-lspconfig', function(mason_lspconfig)
+            mason_lspconfig.setup({})
+        end)
+    end)
+
+    -- set up key mappings
+    setup_keymappings()
 end
 
 -- export the module
