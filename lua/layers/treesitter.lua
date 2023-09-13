@@ -4,6 +4,7 @@
 --
 
 local core = require('core')
+local keys = require('core.keys')
 
 -- we need this to export the module
 local m = {}
@@ -33,6 +34,11 @@ function m.setup()
             -- automatic indentation settings
             indent = { enable = true, disable = { "" } },
         }
+
+        -- set up key mappings
+        core.if_mod('telescope.builtin', function(telescope)
+            keys.map_n('<C-O>', function() telescope.treesitter() end)
+        end)
     end)
 end
 
