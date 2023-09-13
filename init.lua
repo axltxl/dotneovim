@@ -43,8 +43,8 @@ layers.enable({
     "todocomments",       -- keep track of FIXMEs and TODO comments in a project, needs trouble
 
     -- programming languages support
-    "lang_lua",       -- lua completion, lsp, etc.
-    "lang_python_v2", -- python completion, lsp, etc.
+    "lang_lua",    -- lua completion, lsp, etc.
+    "lang_python", -- python completion, lsp, etc.
 })
 
 --
