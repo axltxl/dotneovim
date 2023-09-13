@@ -7,6 +7,7 @@
 --
 
 local core = require('core')
+local config = require('core.config')
 
 -- we need this to export the module
 local m = {}
@@ -53,9 +54,13 @@ end
 -- setup() -> this will be invoked when boot() is invoked, doesn't have to return
 function m.enable(layers)
     for _, layer in ipairs(layers) do
-        core.safe_require('layers.' .. layer, function(l)
-            table.insert(layermods, l)
-        end)
+        if config.get('core.layer.unsafe_load') == false then
+            core.safe_require('layers.' .. layer, function(l)
+                table.insert(layermods, l)
+            end)
+        else
+            table.insert(layermods, require('layers.' .. layer))
+        end
     end
 end
 

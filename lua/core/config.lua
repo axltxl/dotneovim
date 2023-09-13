@@ -27,4 +27,7 @@ function m.set(k, v)
     settings[k] = v
 end
 
+-- setting up some defaults
+m.set('core.layer.unsafe_load', false) -- if true, loading layers won't be done with core.safe_require, but instead require()
+
 return m

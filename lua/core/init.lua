@@ -11,8 +11,7 @@ local m = {}
 
 -- log stuff
 function m.log(level, msg)
-    local ctx = __FUNC__() .. ':' .. __FILE__()
-    print(">> [" .. level .. "] [" .. ctx .. "] " .. msg)
+    print(string.format("[%s] >> %s", level, msg))
 end
 
 function m.log_info(msg)
@@ -52,7 +51,7 @@ end
 function m.safe_require(mod_name, callback)
     local ok, mod = pcall(require, mod_name)
     if not ok then
-        m.log_error(mod_name .. ": failed to load module")
+        m.log_error(string.format("%s: failed to load module"))
         m.log_error(debug.traceback())
     elseif callback ~= nil then
         callback(mod)
