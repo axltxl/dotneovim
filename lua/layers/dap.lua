@@ -5,14 +5,9 @@
 
 local core = require('core')
 local keys = require('core.keys')
-local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
-
-local function desc(msg)
-    return utils.desc('DAP', msg)
-end
 
 -- list of plugins required by this layer
 function m.get_plugins()
@@ -29,32 +24,32 @@ local function setup_keys()
         -- toggle breakpoint
         keys.map_leader_n('db', function()
             dap.toggle_breakpoint()
-        end, { desc = desc('toggle breakpoint') })
+        end, { desc = 'toggle breakpoint' })
 
         -- start/continue
         keys.map_leader_n('d<space>', function()
             dap.continue()
-        end, { desc = desc('start/continue') })
+        end, { desc = 'start/continue' })
 
         -- step over
         keys.map_leader_n('d[', function()
             dap.step_over()
-        end, { desc = desc('step over') })
+        end, { desc = 'step over' })
 
         -- step into
         keys.map_leader_n('d]', function()
             dap.step_into()
-        end, { desc = desc('step into') })
+        end, { desc = 'step into' })
 
         -- terminate
         keys.map_leader_n('dt', function()
             dap.disconnect()
-        end, { desc = desc('terminate session') })
+        end, { desc = 'terminate session' })
 
         -- restart
         keys.map_leader_n('dr', function()
             dap.restart()
-        end, { desc = desc('restart session') })
+        end, { desc = 'restart session' })
     end)
 end
 

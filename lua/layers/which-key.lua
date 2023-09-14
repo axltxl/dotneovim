@@ -24,6 +24,24 @@ function m.setup()
                 border = "single", --
             }
         }
+
+        -- Main prefix descriptions go in here
+        --------------------------------------
+        which_key.register({
+            ["<leader>"] = {
+                p = { "+project" }, -- project management
+                f = { "+file" }, -- file management
+                d = { "+debug" }, -- debugger (DAP)
+                g = { "+git" }, -- git repository management
+                t = { "+tab" }, -- tab management
+                w = { "+window" }, -- window management
+                [";"] = { -- editor settings
+                    name = "+nvim",
+                    c = { "+colorscheme" }, -- color scheme
+                    d = { "+diagnostics" } -- diagnostics management
+                }
+            }
+        })
     end)
 end
 

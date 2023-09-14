@@ -8,7 +8,6 @@
 
 local core = require('core')
 local keys = require('core.keys')
-local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
@@ -32,7 +31,7 @@ function m.setup()
             -- use trouble to list all TODOs
             keys.map_leader_n(';df', function()
                 trouble.open('todo')
-            end, { desc = utils.desc('trouble', 'list TODOs') })
+            end, { desc = 'list TODOs' })
         end)
     end)
 end

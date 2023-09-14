@@ -5,14 +5,9 @@
 
 local core = require("core")
 local keys = require("core.keys")
-local utils = require('core.utils')
 
 -- we need this to export the module
 local m = {}
-
-local function desc(msg)
-    return utils.desc('comment', msg)
-end
 
 -- list of plugins required by this layer
 function m.get_plugins()
@@ -35,8 +30,8 @@ function m.setup()
 
     -- key mappings
     core.safe_require('Comment.api', function(_)
-        keys.map_leader_v(';', '<Plug>(comment_toggle_linewise_visual)', {desc = desc('toggle comment (visual)')})
-        keys.map_leader_n(';;', '<Plug>(comment_toggle_linewise_current)', {desc = desc('toggle comment (line)')})
+        keys.map_leader_v(';', '<Plug>(comment_toggle_linewise_visual)', {desc = 'toggle comment (visual)'})
+        keys.map_leader_n(';;', '<Plug>(comment_toggle_linewise_current)', {desc = 'toggle comment (line)'})
     end)
 end
 

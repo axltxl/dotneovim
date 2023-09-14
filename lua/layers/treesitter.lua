@@ -37,7 +37,7 @@ function m.setup()
 
         -- set up key mappings
         core.if_mod('telescope.builtin', function(telescope)
-            keys.map_n('<C-O>', function() telescope.treesitter() end)
+            keys.map_leader_n('fo', function() telescope.treesitter() end)
         end)
     end)
 end
