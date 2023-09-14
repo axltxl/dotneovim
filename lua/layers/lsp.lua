@@ -61,6 +61,9 @@ local function setup_keymappings()
 
             -- go to definition
             keys.map_n('<C-]>', vim.lsp.buf.definition, opts)
+
+            -- references
+            keys.map_n('gr', vim.lsp.buf.references, opts)
         end
     })
 end

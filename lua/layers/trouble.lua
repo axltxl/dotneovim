@@ -38,6 +38,23 @@ function m.setup()
         keys.map_leader_n(';dw',
             function() trouble.open('workspace_diagnostics') end,
             { desc = desc('workspace diagnostics') })
+        -- Overwrite some LSP key mappings
+        -- some defaults come from the base lsp layer
+        ----------------------------------
+        -- Use LspAttach autocommand to only map the following keys
+        -- after the language server attaches to the current buffer
+       vim.api.nvim_create_autocmd('LspAttach', {
+            group = 'UserLspConfig',
+            callback = function(ev)
+                local opts = { buffer = ev.buf }
+
+                -- go to definition
+                keys.map_n('<C-]>', function() trouble.open('lsp_definitions') end, opts)
+
+                -- references
+                keys.map_n('gr', function() trouble.open('lsp_references') end, opts)
+            end
+        })
     end)
 end
 

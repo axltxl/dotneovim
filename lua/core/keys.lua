@@ -2,7 +2,7 @@
 -- key bindings API
 --
 
-local DEFAULT_BINDINGOPTS = { noremap = true }
+local DEFAULT_BINDINGOPTS = { noremap = false, remap = true }
 
 -- we need this to export the module
 local m = {}
@@ -12,7 +12,12 @@ function m.map(mode, keys, command, opts)
     if opts == nil then
         opts = DEFAULT_BINDINGOPTS
     else
-        opts['noremap'] = true
+        if opts['noremap'] == nil then
+            opts['noremap'] = true
+        end
+        if opts['remap'] == nil then
+            opts['remap'] = false
+        end
     end
     vim.keymap.set(mode, keys, command, opts)
 end
