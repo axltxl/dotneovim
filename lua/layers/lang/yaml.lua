@@ -3,15 +3,25 @@
 -- YAML file support
 --
 
-local core       = require('core')
-local config     = require('core.config')
+local core         = require('core')
+local config       = require('core.config')
 
 -- we need this to export the module
-local m          = {}
+local m            = {}
 --
 -- packages from mason required by this layer
-local mason_pkgs = { 'yaml-language-server', 'yamlfmt' }
-local lsp_server = 'yamlls' -- LSP server
+local mason_pkgs   = { 'yaml-language-server', 'yamlfmt' }
+local lsp_server   = 'yamlls' -- LSP server
+
+-- Supported YAML schemas
+-- see: https://shemastore.org
+------------------------------
+local yaml_schemas = {
+    -- GitHub workflow files
+    ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+    -- AWS CloudFormation templates
+    ['https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json'] = 'cloudformation/*'
+}
 
 -- list of plugins required by this layer
 function m.get_plugins()
@@ -68,13 +78,7 @@ function m.setup()
         local lsp_settings = {
             yaml = {
                 -- List of supported schemas by this module
-                -- see: https://shemastore.org
-                schemas = {
-                    -- GitHub workflow files
-                    ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                    -- AWS CloudFormation templates
-                    ['https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json'] = 'cloudformation/*'
-                }
+                schemas = yaml_schemas
             }
         }
 
