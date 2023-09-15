@@ -46,6 +46,7 @@ layers.enable({
     "lang.lua",    -- lua completion, lsp, etc.
     "lang.python", -- python completion, lsp, etc.
     "lang.json",   -- JSON
+    "lang.yaml",   -- YAML
 })
 
 --
