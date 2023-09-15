@@ -11,40 +11,40 @@ local layers = require("core.layers")
 layers.enable({
     -- Basics
     ----------------------
-    "foundation", -- the very basics
-    "window",     -- window management
-    "tab",        -- tab management
-    "telescope",  -- fuzzy finder
-    "file",       -- file management
+    "basics.foundation", -- the very basics
+    "basics.window",     -- window management
+    "basics.tab",        -- tab management
+    "basics.telescope",  -- fuzzy finder
+    "basics.file",       -- file management
+    "basics.which-key",  -- spacemacs like ;)
 
     -- Look and feel
     ----------------------
-    "colorscheme", -- color scheme
-    "lualine",     -- powerline
-    "which-key",   -- spacemacs like ;)
+    "theme.colorscheme", -- color scheme
+    "theme.lualine",     -- powerline
 
     -- Basics of programming
     ----------------------
-    "git",        -- repositories management
-    "treesitter", -- syntax highlighting et al.
-    "surround",   -- vim-surround
-    "autopairs",  -- auto close pairs
-    "autotrim",   -- trim files upon saving
-    "comment",    -- toggle comment (nerdcommenter)
-    "project",    -- project management
+    "dev.git",        -- repositories management
+    "dev.treesitter", -- syntax highlighting et al.
+    "dev.surround",   -- vim-surround
+    "dev.autopairs",  -- auto close pairs
+    "dev.autotrim",   -- trim files upon saving
+    "dev.comment",    -- toggle comment (nerdcommenter)
+    "dev.project",    -- project management
 
     -- the good stuff
-    "mason",              -- package manager for LSPs, linters, etc.
-    "lsp",                -- lsp configuration
-    "dap",                -- Debug Adapter protocol configuration
-    "lsp_autocompletion", -- lsp-powered autocompletion + snippet engine
-    "lsp_efm",            -- efm-langserver (general purpose LSP, can be used by several languages)
-    "trouble",            -- diagnostics panel
-    "todocomments",       -- keep track of FIXMEs and TODO comments in a project, needs trouble
+    "dev.mason",          -- package manager for LSPs, linters, etc.
+    "dev.lsp",            -- lsp configuration
+    "dev.dap",            -- Debug Adapter protocol configuration
+    "lsp.autocompletion", -- lsp-powered autocompletion + snippet engine
+    "lsp.efm",            -- efm-langserver (general purpose LSP, can be used by several languages)
+    "dev.trouble",        -- diagnostics panel
+    "dev.todocomments",   -- keep track of FIXMEs and TODO comments in a project, needs trouble
 
     -- programming languages support
-    "lang_lua",    -- lua completion, lsp, etc.
-    "lang_python", -- python completion, lsp, etc.
+    "lang.lua",    -- lua completion, lsp, etc.
+    "lang.python", -- python completion, lsp, etc.
 })
 
 --

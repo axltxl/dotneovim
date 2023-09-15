@@ -13,6 +13,7 @@ function m.get_plugins()
             'nvim-telescope/telescope.nvim',
             tag = '0.1.2',
             dependencies = { 'nvim-lua/plenary.nvim' },
+            lazy = true,
         }
     }
 end
